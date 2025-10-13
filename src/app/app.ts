@@ -8,4 +8,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.scss'
 })
 export class App {
+  showCV = signal(false);
+
+  toggleCV() {
+    this.showCV.set(!this.showCV());
+  }
 }

@@ -3,7 +3,7 @@ div.content {
     color: white;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 div.name {
@@ -38,7 +38,7 @@ div.links {
         margin: 0;
         font-size: 1.2rem;
         cursor: pointer;
-        transition: opacity 0.2s ease;
+        transition: all 0.2s ease;
         text-decoration: none;
         color: inherit;
         
@@ -49,5 +49,25 @@ div.links {
         &:visited {
             color: inherit;
         }
+        
+        &.active {
+            color: rgb(5, 246, 5);
+        }
+    }
+}
+
+.pdf-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    
+    .pdf {
+        border: 1px solid #ccc;
+        border-radius: 4px;
     }
 }

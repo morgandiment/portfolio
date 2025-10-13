@@ -6,9 +6,16 @@
     </div>
 
     <div class="links">
-      <a href="https://www.linkedin.com/in/morgandiment/" target="_blank">LinkedIn</a><a href="https://github.com/morgandiment" target="_blank">GitHub</a><a>CV</a>
+      <a href="https://www.linkedin.com/in/morgandiment/" target="_blank">LinkedIn</a><a href="https://github.com/morgandiment" target="_blank">GitHub</a><a (click)="toggleCV()" [class.active]="showCV()">CV</a>
     </div>
     
+    @if (showCV()) {
+      <div class="pdf-container">
+        <object class="pdf" data="/CV-MorganDiment.pdf" type="application/pdf" width="800" height="500">
+          <p>Your browser doesn't support PDFs. <a href="/CV-MorganDiment.pdf" target="_blank">Download the PDF</a>.</p>
+        </object>
+      </div>
+    }
   </div>
 </main>
 
