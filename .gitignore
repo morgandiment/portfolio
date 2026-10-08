@@ -1,4 +1,3 @@
-# Following 6 sections from Git template
 # Angular specific
 /dist/
 /out-tsc/
@@ -28,4 +27,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# MacOS
 .DS_Store
+
+# CV
+/public/CV*.pdf
