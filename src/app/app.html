@@ -1,21 +1,31 @@
 <main class="main">
-  <div class="content">
+  <div class="content" [class.has-cards]="activeSection()">
 
     <div class="name">
       <h1>Morgan Diment</h1>
     </div>
 
     <div class="links">
-      <a href="https://www.linkedin.com/in/morgandiment/" target="_blank">LinkedIn</a><a href="https://github.com/morgandiment" target="_blank">GitHub</a><a (click)="toggleCV()" [class.active]="showCV()">CV</a>
+      <a href="https://www.linkedin.com/in/morgandiment/" target="_blank">LinkedIn</a><a href="https://github.com/morgandiment" target="_blank">GitHub</a>
+      <button type="button" [class.active]="activeSection() === 'education'" (click)="showSection('education')">Education</button>
+      <button type="button" [class.active]="activeSection() === 'experience'" (click)="showSection('experience')">Experience</button>
     </div>
-    
-    @if (showCV()) {
-      <div class="pdf-container">
-        <object class="pdf" data="/CV-MorganDiment.pdf" type="application/pdf" width="800" height="500">
-          <p>Your browser doesn't support PDFs. <a href="/CV-MorganDiment.pdf" target="_blank">Download the PDF</a>.</p>
-        </object>
-      </div>
+
+    @if (activeSection(); as section) {
+      <section class="cards-section" [attr.aria-labelledby]="section + '-heading'">
+        <h2 [id]="section + '-heading'">{{ section | titlecase }}</h2>
+        <div class="cards" tabindex="0">
+          @for (item of section === 'education' ? educationItems : experienceItems; track $index) {
+            <article class="card">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.overview }}</p>
+              <p class="dates">{{ item.dates }}</p>
+            </article>
+          }
+        </div>
+      </section>
     }
+
   </div>
 </main>
 

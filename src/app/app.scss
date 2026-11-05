@@ -1,9 +1,11 @@
 div.content {
+    position: relative;
     background-color: black;
     color: white;
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    overflow-x: clip;
 }
 
 div.name {
@@ -34,25 +36,129 @@ div.links {
     transform: translate(-50%, -50%);
     width: 100%;
 
-    a {
+    a,
+    button {
         margin: 0;
         font-size: 1.2rem;
         cursor: pointer;
         transition: all 0.2s ease;
         text-decoration: none;
         color: inherit;
-        
-        &:hover {
-            opacity: 0.7;
-        }
+        background: none;
+        border: 0;
+        font-family: inherit;
+        padding: 0;
         
         &:visited {
             color: inherit;
         }
         
-        &.active {
-            color: rgb(5, 246, 5);
+        &:hover {
+            opacity: 0.7;
+            
+            &:nth-child(1) {
+                color: #0ea6f8;
+            }
+            
+            &:nth-child(2) {
+                color: #09f949;
+            }
+            
+            &:nth-child(3) {
+                color: #f9a004;
+            }
+            
+            &:nth-child(4) {
+                color: #a855f7;
+            }
         }
+        
+        &.active {
+            &:nth-child(3) {
+                color: #f9a004;
+            }
+
+            &:nth-child(4) {
+                color: #a855f7;
+            }
+        }
+    }
+}
+
+.cards-section {
+    position: absolute;
+    top: calc(50% + 3rem);
+    left: 50%;
+    width: min(90vw, 70rem);
+    padding-bottom: 6rem;
+    transform: translateX(-50%);
+    z-index: 1;
+
+    h2 {
+        margin: 0 0 1rem;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+}
+
+.cards {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0.5rem 1.5rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: #666 transparent;
+}
+
+.card {
+    display: flex;
+    flex: 0 0 12rem;
+    flex-direction: column;
+    justify-content: center;
+    aspect-ratio: 1;
+    padding: 1.25rem;
+    border: 1px solid #444;
+    border-radius: 0.25rem;
+    background: #111;
+    scroll-snap-align: start;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        border-color: #fff;
+        animation: card-wiggle 0.45s ease-in-out;
+    }
+
+    h3 {
+        margin: 0 0 0.75rem;
+        font-size: 1.1rem;
+    }
+
+    p {
+        margin: 0;
+        color: #bbb;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .dates {
+        margin-top: 0.75rem;
+        color: #fff;
+        font-size: 0.8rem;
+    }
+}
+
+@keyframes card-wiggle {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-2deg);
+    }
+
+    75% {
+        transform: rotate(2deg);
     }
 }
 
@@ -69,5 +175,22 @@ div.links {
     .pdf {
         border: 1px solid #ccc;
         border-radius: 4px;
+    }
+}
+
+@media (max-width: 600px) {
+    div.name h1 {
+        font-size: 3rem;
+    }
+
+    div.links {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .cards-section {
+        top: calc(50% + 4rem);
+        width: 92vw;
+        padding-bottom: 14rem;
     }
 }
